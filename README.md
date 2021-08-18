@@ -43,4 +43,4 @@ Para te ajudar a entender um pouco melhor, essas são as três entidades necess�
 
 ## :calendar: Entrega
 
-Para entregar esse desafio você deve criar um repositório do Github contendo a sua implementação e enviar o link para o email **dev.gi@precato.com.br**.
+Para entregar esse desafio você deve criar um repositório do Github contendo a sua implementação e enviar o link do mesmo para o email **dev.gi@precato.com.br**.
