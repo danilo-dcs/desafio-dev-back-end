@@ -45,7 +45,10 @@ export class PagamentoEntity{
   })
   data: string;
 
-  @Column('varchar')
+  @Column({
+    type: 'varchar',
+    nullable: true
+  })
   motivo: string;
 
 }
