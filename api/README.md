@@ -5,8 +5,6 @@
 [circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
 [circleci-url]: https://circleci.com/gh/nestjs/nest
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
 <a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
 <a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
 <a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
@@ -15,20 +13,20 @@
 </p>
  
 
-## Description
+## Descrição
 
 Repositório contendo o código fonte da API desenvolvida para o desafio back-end da Precato. Optou-se pela utilização do PostgreSQL como banco de dados, e do NestJs como framework para a criação da API. 
 
 Antes de executar a API, é necessária a criação do banco de dados local "desafio_precato" e a configuração do arquivo de ambiente ".env" contido no diretório "api".
 
-## Installation
+## Instalação
 
 ```bash
 $ npm install
 $ yarn install
 ```
 
-## Running the app
+## Executando o app
 
 ```bash
 # development
@@ -44,6 +42,6 @@ $ npm run start:prod
 $ yarn run start:prod
 ```
 
-## License
+## Licensa
 
 Nest is [MIT licensed](LICENSE).
