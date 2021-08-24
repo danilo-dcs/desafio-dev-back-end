@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { PagamentoEntity } from "src/pagamento/pagamento.entity";
+import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('devedor')
 export class EnteDevedorEntity {
@@ -19,4 +20,9 @@ export class EnteDevedorEntity {
     name: 'cnpj_ente_devedor'
   })
   cnpjEnteDevedor: String;
+
+  @OneToMany(
+    () => PagamentoEntity, pagamento => pagamento.devedor
+  )
+  pagamento: PagamentoEntity;
 }

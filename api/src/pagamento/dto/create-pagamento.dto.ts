@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsNumber, isNumber, IsNumberString, IsOptional, IsString, IsUUID } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsOptional, IsString, IsUUID, Min } from 'class-validator';
 
 export class CreatePagamentoDto {
 
@@ -14,10 +14,12 @@ export class CreatePagamentoDto {
 
   @IsNotEmpty()
   @IsNumber()
+  @Min(1)   // maior que 0
   valorInicial: number;
 
   @IsNotEmpty()
   @IsNumber()
+  @Min(1)     // maior que 0
   valorFinal: number;
 
   @IsNotEmpty()

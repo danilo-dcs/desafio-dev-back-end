@@ -1,4 +1,4 @@
-import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { CredorEntity } from "src/credor/credor.entity";
 import { EnteDevedorEntity } from "src/ente-devedor/devedor.entity";
 
@@ -9,16 +9,6 @@ export class PagamentoEntity{
     name: 'id_remessa'
   })
   idRemessa: string;
-
-  @ManyToOne(
-    () => CredorEntity, credor => credor.idCredor
-  )
-  idCredor: string;
-
-  @ManyToOne(
-    () => EnteDevedorEntity, devedor => devedor.idEnteDevedor
-  )
-  idEnteDevedor: string;
 
   @Column({
     type: 'float',
@@ -50,5 +40,21 @@ export class PagamentoEntity{
     nullable: true
   })
   motivo: string;
+
+  @ManyToOne(
+    () => CredorEntity, credor => credor.pagamento
+  )
+  @JoinColumn({
+    name: 'idCredor'
+  })
+  credor: CredorEntity;
+
+  @ManyToOne(
+    () => EnteDevedorEntity, devedor => devedor.pagamento
+  )
+  @JoinColumn({
+    name: 'idEnteDevedor'
+  })
+  devedor: EnteDevedorEntity;
 
 }
