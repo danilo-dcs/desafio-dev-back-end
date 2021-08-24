@@ -28,12 +28,11 @@ export class PagamentoController {
 
   @Put(':id')
   async update(@Param('id') pagamentoId: string, @Body() pagamentoPayload: CreatePagamentoDto ){
-
+    await this.pagamentoService.update(pagamentoId, pagamentoPayload);
   }
 
   @Delete(':id')
   async delete(@Param('id') pagamentoId: string ){
-
+    await this.pagamentoService.delete(pagamentoId);
   }
-
 }
