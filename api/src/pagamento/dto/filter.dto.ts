@@ -1,23 +1,23 @@
-import { IsNotEmpty, IsNumber, IsOptional, IsString, IsUUID, Min } from 'class-validator';
+import { IsNumber, IsOptional, IsString, IsUUID, Min } from 'class-validator';
 
-export class CreatePagamentoDto {
+export class FilterDto {
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsString()
   @IsUUID()
   idCredor: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsString()
   @IsUUID()
   idEnteDevedor: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsNumber()
   @Min(1)   // maior que 0
   valorInicial: number;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsNumber()
   @Min(1)     // maior que 0
   valorFinal: number;
