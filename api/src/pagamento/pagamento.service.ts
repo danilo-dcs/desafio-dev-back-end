@@ -32,15 +32,25 @@ export class PagamentoService {
       query.andWhere("pagamento.statusRemessa = :value", {value: filter.valorFinal})
     if(filter.statusRemessa)
       query.andWhere("pagamento.statusRemessa = :value", {value: filter.statusRemessa})
+    
+    query.innerJoinAndSelect('pagamento.credor', 'idCredor');
+    query.innerJoinAndSelect('pagamento.devedor', 'idDevedor');
 
     return query.getMany();
   }
 
   async getById(idPagamento: string): Promise<PagamentoEntity>{
-    const response = this.pagamentoRepository.findOne(idPagamento);
+
+    const query = this.pagamentoRepository.createQueryBuilder('pagamento');
+    
+    query.addSelect("pagamento.idRemessa", "idPagamento");
+    query.innerJoinAndSelect('pagamento.credor', 'idCredor');
+    query.innerJoinAndSelect('pagamento.devedor', 'idDevedor');
+
+    const response = query.getOne();
 
     if(!response)
-      throw new NotFoundException('Pagamento Not Found');
+      throw new NotFoundException('Pagamento Not Found');  
     
     return response;
   }

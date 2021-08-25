@@ -44,6 +44,39 @@ $ npm run start:prod
 $ yarn run start:prod
 ```
 
+## Requisições
+
+
+<b>Post: </b>
+
+```
+localhost:3000/api/credor
+localhost:3000/api/devedor
+localhost:3000/api/pagamento
+```
+
+<b>Get All sem parâmetros: </b>
+
+```
+localhost:3000/api/credor
+localhost:3000/api/devedor
+localhost:3000/api/pagamento
+```
+
+<b>Get All com parâmetros: </b>
+
+```
+localhost:3000/api/credor?nomeCredor={nome do credor}&cpfCredor={cpf do credor}
+localhost:3000/api/devedor?nomeEnteDevedor={nome do ente devedor}&cnpjEnteDevedor={cnpj do ente devedor}
+localhost:3000/api/pagamento?valorInicial={valor inicial}&valorFinal={valor final} ... & ...
+```
+
+<b>Put/Delete/GetById: </b>
+localhost:3000/api/credor/{id do credor}
+localhost:3000/api/devedor/{id do devedor}
+localhost:3000/api/pagamento/{id do pagamento}
+
+
 ## Licensa
 
 Nest is [MIT licensed](LICENSE).
