@@ -51,7 +51,9 @@ $ yarn run start:prod
 
 ```
 localhost:3000/api/credor
+#
 localhost:3000/api/devedor
+#
 localhost:3000/api/pagamento
 ```
 
@@ -59,7 +61,9 @@ localhost:3000/api/pagamento
 
 ```
 localhost:3000/api/credor
+#
 localhost:3000/api/devedor
+#
 localhost:3000/api/pagamento
 ```
 
@@ -67,13 +71,17 @@ localhost:3000/api/pagamento
 
 ```
 localhost:3000/api/credor?nomeCredor={nome do credor}&cpfCredor={cpf do credor}
+#
 localhost:3000/api/devedor?nomeEnteDevedor={nome do ente devedor}&cnpjEnteDevedor={cnpj do ente devedor}
+#
 localhost:3000/api/pagamento?valorInicial={valor inicial}&valorFinal={valor final} ... & ...
 ```
 
 <b>Put/Delete/GetById: </b>
 localhost:3000/api/credor/{id do credor}
+#
 localhost:3000/api/devedor/{id do devedor}
+#
 localhost:3000/api/pagamento/{id do pagamento}
 
 
