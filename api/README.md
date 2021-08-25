@@ -77,6 +77,40 @@ localhost:3000/api/devedor/{id do devedor}
 localhost:3000/api/pagamento/{id do pagamento}
 
 
+## Corpo da Requisição
+
+<b>Exemplo de corpo de requisição para a rota de POST/PUT do credor: </b>
+
+```
+{
+    "nomeCredor": "nome",
+    "cpfCredor": "123456789123",  # 11 caracteres
+    "statusCadastro": "STATUS"    # Opcional, caso não informado, o valor padrão é "ATIVO"
+}
+```
+
+<b>Exemplo de corpo de requisição para a rota de POST/PUT do devedor: </b>
+
+```
+{
+    "nomeEnteDevedor": "nome",
+    "cnpjEnteDevedor": "12345678912345"             # 14 caracteres
+}
+```
+
+<b>Exemplo de corpo de requisição para a rota de POST/PUT do pagamento: </b>
+
+```
+{
+    "idCredor": "d36e1c11-5444-4e58-a1cd-7b672f5c246a",               # string no formato uuid
+    "idEnteDevedor": "ad4cd1c1-b232-4de2-abf1-927610a7b468",          # string no formato uuid
+    "valorInicial": 5.00,                                             # numero maior que 0
+    "valorFinal": 7.00,                                               # numero maior que 0
+    "statusRemessa": "STATUS"                                         # Opcional                            
+}
+```
+
+
 ## Licensa
 
 Nest is [MIT licensed](LICENSE).

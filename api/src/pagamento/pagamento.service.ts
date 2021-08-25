@@ -62,17 +62,53 @@ export class PagamentoService {
     item.devedor = await this.devedorService.getById(pagamentoPayload.idEnteDevedor);
     item.valorInicial = pagamentoPayload.valorInicial;
     item.valorFinal = pagamentoPayload.valorFinal;
-    item.statusRemessa = 'ATIVO';
+    item.statusRemessa = 'APROVADO';
+
+    var statusMsg = "";
+
+
+    // Verificações da regra de negócio
+
+    if(!(item.credor.statusCadastro == "APROVADO"))       // se o cadastro do credor não foi aprovado
+      statusMsg = "Solicitação de pagamento inválida! O cadastro do credor não foi aprovado.";
+    else if(!item.devedor)                                // se não há ente devedor cadastrado
+      statusMsg = "Solicitação de pagamento inválida! Não há ente decedor cadastrado.";
+    else if(item.valorFinal > item.valorInicial)          // se o valor final não for menos que o valor inicial
+      statusMsg = "Solicitação de pagamento inválida! Não há ente decedor cadastrado.";
+
+    if(statusMsg){   // se a mensagem não for vazia
+      item.motivo = statusMsg;
+      item.statusRemessa = "REPROVADO"
+    }
+
+    // as regras de negócio 3 e 5 são verificadas automaticamente pela api, cada solicitação de pagamento
+    // para um mesmo credor será diferente da outra, não há solicitações de pagamento repetidas visto que 
+    // o id da remessa é uma chave primária
+    // além disso, os valores inseridos devem ser obrigatoriamente maior do que 0, conforme validado no 
+    // dto do pagamento. Caso contrário, não será cadastrado o pagamento
     
-    this.pagamentoRepository.save(item);
+    this.pagamentoRepository.save(item);              // armazena a solicitação de pagamento com, 
+        // caso a solicitação seja inálida o texto no campo "motivo" irá indicar o porquê.
+
     let msg = `Created`;
     throw new HttpException(msg, HttpStatus.CREATED);
   }
 
   async update(pagamentoId: string, pagamentoPayload: CreatePagamentoDto){
-    const response = this.getById(pagamentoId);
+
+    const response = this.getById(pagamentoId);  // verfica se já existe
+    
     if(response){
-      this.pagamentoRepository.update(pagamentoId, pagamentoPayload);
+
+      let item = new PagamentoEntity;
+      item.credor = await this.credorService.getById(pagamentoPayload.idCredor);
+      item.devedor = await this.devedorService.getById(pagamentoPayload.idEnteDevedor);
+      item.valorInicial = pagamentoPayload.valorInicial;
+      item.valorFinal = pagamentoPayload.valorFinal;
+      item.statusRemessa = pagamentoPayload.statusRemessa;
+      item.motivo = pagamentoPayload.motivo;
+
+      this.pagamentoRepository.update(pagamentoId, item);
       throw new HttpException(`Updated with success`, HttpStatus.ACCEPTED);
     }
   }
