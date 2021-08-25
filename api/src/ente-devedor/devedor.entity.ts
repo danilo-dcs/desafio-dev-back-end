@@ -1,5 +1,5 @@
 import { PagamentoEntity } from "src/pagamento/pagamento.entity";
-import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('devedor')
 export class EnteDevedorEntity {
@@ -7,19 +7,19 @@ export class EnteDevedorEntity {
   @PrimaryGeneratedColumn('uuid', {
     name: 'id_ente_devedor'
   })
-  idEnteDevedor: String;
+  idEnteDevedor: string;
 
   @Column({
     type: 'varchar',
     name: 'nome_ente_devedor'
   })
-  nomeEnteDevedor: String;
+  nomeEnteDevedor: string;
 
   @Column({
     type: 'varchar', 
     name: 'cnpj_ente_devedor'
   })
-  cnpjEnteDevedor: String;
+  cnpjEnteDevedor: string;
 
   @OneToMany(
     () => PagamentoEntity, pagamento => pagamento.devedor

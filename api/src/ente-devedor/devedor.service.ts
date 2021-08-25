@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { HttpStatus, HttpException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { EnteDevedorEntity } from './devedor.entity';
@@ -29,7 +29,7 @@ export class DevedorService {
       const response = this.devedorRepository.findOne(devedorId);
 
       if(!response)
-        throw new NotFoundException("Ente-Devedor não encontrado");
+        throw new NotFoundException("Ente-Devedor Not Found");
 
       return response;
     }
@@ -40,18 +40,23 @@ export class DevedorService {
       item.nomeEnteDevedor = devedorPyload.nomeEnteDevedor;
       item.cnpjEnteDevedor = devedorPyload.cnpjEnteDevedor;
 
-      this.devedorRepository.create(item);
+      this.devedorRepository.save(item);
+      let msg = `Created`;
+      throw new HttpException(msg, HttpStatus.CREATED);
     }
 
     async update(devedorId: string, devedorPayload: CreateEnteDevedorDto){
       const response = this.getById(devedorId);
       if(response)
         this.devedorRepository.update(devedorId, devedorPayload);
+        throw new HttpException(`Updated with success`, HttpStatus.ACCEPTED);
     }
 
     async delete(devedorId: string){
       const response = this.getById(devedorId);
       if(response)
         this.devedorRepository.delete(devedorId);
+        let msg = `Deleted with success`;
+        throw new HttpException(msg, HttpStatus.OK);
     }
 }

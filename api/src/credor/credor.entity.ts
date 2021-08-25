@@ -7,25 +7,25 @@ export class CredorEntity{
   @PrimaryGeneratedColumn('uuid', {
     name: 'id_credor',
   })
-  idCredor: String;
+  idCredor: string;
 
   @Column({
     type: 'varchar', 
     name: 'nome_credor'
   })
-  nomeCredor: String;
+  nomeCredor: string;
 
   @Column({
     type: 'varchar', 
     name: 'cpf_credor'
   })
-  cpfCredor: String;
+  cpfCredor: string;
 
   @Column({
     type: 'varchar', 
     name: 'status_cadastro'
   })
-  statusCadastro: String;
+  statusCadastro: string;
 
   @OneToMany(
     () => PagamentoEntity, pagamento => pagamento.credor

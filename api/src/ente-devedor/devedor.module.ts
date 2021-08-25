@@ -13,6 +13,7 @@ import { DevedorService } from './devedor.service';
   ],
 
   controllers: [DevedorController],
-  providers: [DevedorService]
+  providers: [DevedorService],
+  exports: [DevedorService]
 })
 export class DevedorModule {}

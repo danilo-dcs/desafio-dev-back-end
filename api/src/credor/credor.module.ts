@@ -11,8 +11,8 @@ import { CredorEntity } from './credor.entity';
       CredorEntity
     ])
   ],
-
   providers: [CredorService],
-  controllers: [CredorController]
+  controllers: [CredorController],
+  exports: [CredorService]
 })
 export class CredorModule {}
